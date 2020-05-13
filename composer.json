@@ -1,0 +1,27 @@
+{
+    "name": "mawdoo3com/waraqa-integration",
+    "description": "This package is callback api to publish articles from waraqa platform",
+    "type": "package",
+    "require": {
+        "php": ">=7.0",
+        "php-amqplib/php-amqplib": "2.7.*",
+        "guzzlehttp/guzzle": "6.5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Waraqa\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abd Al-Rahman",
+            "email": "abdalrahman.alzoubi@mawdoo3.com"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "platform-check": false
+    },
+    "minimum-stability": "dev"
+}
