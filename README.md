@@ -13,7 +13,8 @@ composer require mawdoo3com/waraqa-integration
 <?php
 
 use Waraqa\Connection\WAMQPConnect;
-use Waraqa\Producer;
+use PhpAmqpLib\Message\AMQPMessage;
+use Waraqa\Consumer;
 
 class WaraqaIntegration
 {
@@ -42,8 +43,7 @@ class WaraqaIntegration
 <?php
 
 use Waraqa\Connection\WAMQPConnect;
-use PhpAmqpLib\Message\AMQPMessage;
-use Waraqa\Consumer;
+use Waraqa\Producer;
 
 class WaraqaIntegration
 {
