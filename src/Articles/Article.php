@@ -74,7 +74,8 @@ class Article
         // Send a request to $request_uri
         $response = $this->client->request('GET', $request_uri, [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->token
+                'Authorization' => 'Bearer ' . $this->token,
+                'Accept' => 'application/json'
             ]
         ]);
 
