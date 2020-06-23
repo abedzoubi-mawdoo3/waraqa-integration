@@ -41,11 +41,12 @@ class WAMQPConnect implements ConnectInterface
      * @param  mixed $queue
      * @return void
      */
-    public function __construct(String $connection_string, String $exchange, String $cert_path = '/etc/ssl/certs', String $queue = 'basic_get_queue')
+    public function __construct(String $connection_string, String $exchange, String $cert_path = '/etc/ssl/certs', String $queue = null)
     {
         $this->connection_string = $connection_string;
-        $this->exchange = $exchange;
-        $this->queue = $queue;
+        $this->exchange = $this->queue = $exchange;
+        if(!empty($queue))
+            $this->queue = $queue;
         $this->cert_path = $cert_path;
     }
     

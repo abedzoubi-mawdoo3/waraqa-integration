@@ -13,7 +13,7 @@ class Consumer
      * @param  mixed $callback
      * @return void
      */
-    public function consume(WAMQPConnect $WConnection, $callback)
+    public function consume(WAMQPConnect $WConnection, $callback, $check=true)
     {
         $connection = $WConnection->connection;
         $channel = $connection->channel();
@@ -23,12 +23,14 @@ class Consumer
         $channel->exchange_declare($WConnection->exchange, 'direct', false, true, false);
         $channel->queue_bind($WConnection->queue, $WConnection->exchange);
 
-        $channel->basic_consume($WConnection->queue, 'consumer_tag', false, false, false, false, $callback);
+        $channel->basic_consume($WConnection->queue, 'consumer_tag', false, true, false, false, $callback);
 
-        register_shutdown_function(array($this, 'onShutdown'), $WConnection);
-
-        while (count($channel->callbacks) > 0) {
-            $channel->wait();
+        
+        if($check) {
+            register_shutdown_function(array($this, 'onShutdown'), $WConnection);
+            while (count($channel->callbacks) > 0) {
+                $channel->wait();
+            }
         }
     }
 
