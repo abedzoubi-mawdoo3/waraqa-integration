@@ -114,30 +114,19 @@ class Article
      */
     public function getClientToken()
     {
-        
-        $tokenFile = "waraqaToken.txt";
-        $fh = fopen($tokenFile, 'a+');
-        $token = fread($fh,5000);
-        if(empty($token))
-        {
-            $response = $this->client->request(
-                'POST',
-                'client-api/login',
-                [
-                    'form_params' => [
-                        'access_id' => $this->client_access_id,
-                        'password' => $this->client_password,
-                    ]
+        $response = $this->client->request(
+            'POST',
+            'client-api/login',
+            [
+                'form_params' => [
+                    'access_id' => $this->client_access_id,
+                    'password' => $this->client_password,
                 ]
-                );
-            $responseToken = json_decode($response->getBody()->getContents());
-            $responseToken = $responseToken->data->token;
-            fwrite($fh,$responseToken);
-            return  $responseToken;
-        } else  {
-            return  $token;
-        }
-        fclose($fh);
+            ]
+        );
+        $responseToken = json_decode($response->getBody()->getContents());
+
+        return $responseToken->data->token;
     }
     /**
      *
