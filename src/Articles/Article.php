@@ -10,6 +10,8 @@ class Article
     
     const PUBLISH_ARTICLE_URI = 'client-api/articles/publish';
     
+    const GET_WRITER_INFO_URI = 'client-api/manpower/';
+    
     /**
      * base_uri
      *
@@ -170,6 +172,25 @@ class Article
             );
 //         $responseContent = json_decode($response->getBody()->getContents());
 //         print_r($responseContent );
+    }
+        /**
+     * Get the writer details from waraqa API
+     *
+     * @param  Int $writer_id
+     * @return string
+     */
+    public function fetchWriter(Int $writer_id)
+    {
+        $request_uri = self::GET_WRITER_INFO_URI . $writer_id;
+        // Send a request to $request_uri
+        $response = $this->client->request('GET', $request_uri, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->token
+            ]
+        ]);
+        
+        $responseContent = json_decode($response->getBody()->getContents());
+        return $responseContent->data;
     }
 }
 
