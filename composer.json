@@ -5,7 +5,7 @@
     "require": {
         "php": ">=7.0",
         "php-amqplib/php-amqplib": "2.7.*",
-        "guzzlehttp/guzzle": "^6.5.2",
+        "guzzlehttp/guzzle": "7.3",
         "gumlet/php-image-resize": "1.9.*"
     },
     "autoload": {
