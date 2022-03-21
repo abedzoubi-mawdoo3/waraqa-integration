@@ -11,7 +11,9 @@ class Article
     const PUBLISH_ARTICLE_URI = 'client-api/articles/publish';
     
     const GET_WRITER_INFO_URI = 'client-api/manpower/';
-    
+
+    const GET_ARTICLE_MANPOWER = 'client-api/articles/manpower';
+
     /**
      * base_uri
      *
@@ -189,6 +191,23 @@ class Article
             ]
         ]);
         
+        $responseContent = json_decode($response->getBody()->getContents());
+        return $responseContent->data;
+    }
+
+    public function fetchArticleManpower(Int $article_id)
+    {
+        $request_uri = self::GET_ARTICLE_MANPOWER;
+        // Send a request to $request_uri
+        $response = $this->client->request('GET', $request_uri, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->token,
+                'Content-Type' => 'application/json',
+                'Accesp' => 'application/json'
+            ],
+            'body' => json_encode(["articles" => [$article_id]]),
+        ]);
+
         $responseContent = json_decode($response->getBody()->getContents());
         return $responseContent->data;
     }
