@@ -195,7 +195,7 @@ class Article
         return $responseContent->data;
     }
 
-    public function fetchArticleManpower(Int $article_id)
+    public function fetchArticleManpower(Array $article_ids)
     {
         $request_uri = self::GET_ARTICLE_MANPOWER;
         // Send a request to $request_uri
@@ -205,7 +205,7 @@ class Article
                 'Content-Type' => 'application/json',
                 'Accesp' => 'application/json'
             ],
-            'body' => json_encode(["articles" => [$article_id]]),
+            'body' => json_encode(["articles" => $article_ids]),
         ]);
 
         $responseContent = json_decode($response->getBody()->getContents());
