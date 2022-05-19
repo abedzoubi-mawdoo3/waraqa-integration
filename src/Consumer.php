@@ -24,7 +24,7 @@ class Consumer
         $channel->exchange_declare($WConnection->exchange, 'direct', false, true, false);
         $channel->queue_bind($WConnection->queue, $WConnection->exchange);
 
-        $channel->basic_consume($WConnection->queue, 'consumer_tag', false, true, false, false, $callback);
+        $channel->basic_consume($WConnection->queue, 'consumer_tag', false, false, false, false, $callback);
 
         
         if($check) {
